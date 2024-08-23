@@ -9,19 +9,24 @@ import tensorflow as tf
 # model.load_weights('my_model_weights.weights.h5')
 
 import requests
+import tensorflow as tf
 
 def download_model_from_github(url, output_path):
     response = requests.get(url)
+    response.raise_for_status()  # Raise an error if the download failed
     with open(output_path, 'wb') as f:
         f.write(response.content)
 
-# Example URL to the model file on GitHub
-url = "https://github.com/NandaKishoreYadav/Facial-Emotion-Detection/blob/main/my_model.h5"
-output_path = "my_model.h5"
+# Corrected raw URL to the model file on GitHub
+url = "https://raw.githubusercontent.com/NandaKishoreYadav/Facial-Emotion-Detection/main/my_model.h5"
+output_path = "model.h5"
 
+# Download the model
 download_model_from_github(url, output_path)
 
-model = tf.keras.models.load_model('my_model.h5')
+# Load the model
+model = tf.keras.models.load_model('model.h5')
+
 
 
 
