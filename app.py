@@ -8,12 +8,13 @@ import tensorflow as tf
 # model = tf.keras.models.load_model('my_model.h5')
 # model.load_weights('my_model_weights.weights.h5')
 
-@st.cache(allow_output_mutation=True)
 def load_model():
-    model=tf.keras.models.load_model('my_model.h5')
+    model = tf.keras.models.load_model('my_model.h5')
     return model
+
 with st.spinner('Model is being loaded..'):
-    model=load_model()
+    model = load_model()
+
 
 
 mapper = {
