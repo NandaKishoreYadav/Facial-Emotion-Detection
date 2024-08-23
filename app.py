@@ -8,12 +8,20 @@ import tensorflow as tf
 # model = tf.keras.models.load_model('my_model.h5')
 # model.load_weights('my_model_weights.weights.h5')
 
-def load_model():
-    model = tf.keras.models.load_model('my_model.h5')
-    return model
+import requests
 
-with st.spinner('Model is being loaded..'):
-    model = load_model()
+def download_model_from_github(url, output_path):
+    response = requests.get(url)
+    with open(output_path, 'wb') as f:
+        f.write(response.content)
+
+# Example URL to the model file on GitHub
+url = "https://github.com/NandaKishoreYadav/Facial-Emotion-Detection/blob/main/my_model.h5"
+output_path = "my_model.h5"
+
+download_model_from_github(url, output_path)
+
+model = tf.keras.models.load_model('my_model.h5')
 
 
 
